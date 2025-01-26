@@ -30,7 +30,8 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment: development-env
+    environment:
+      name: github-pages # Default GitHub Pages environment
     runs-on: ubuntu-latest
     steps:
       # Deploy the build artifacts to GitHub Pages
@@ -38,4 +39,3 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           artifact_name: "develop-artifact"
-          token: ${{ secrets.GITHUB_TOKEN }}
