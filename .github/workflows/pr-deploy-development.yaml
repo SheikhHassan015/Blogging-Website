@@ -1,11 +1,12 @@
-name: wf-deploy-development
+name: wf-develop-deploy
+
 on:
   push:
     branches:
       - develop
-      
+
 jobs:
-  wf-deploy-development-job:
+  wf-develop-build-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,14 +16,17 @@ jobs:
         run: |
           npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
 
+      - name: List files in dist directory
+        run: ls -al ./dist  
+
       - name: Upload Artifacts 
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with: 
           path: "./dist"
           name: "develop-artifact"
 
-  wf-deploy-development-jobs: 
-    needs: wf-deploy-development-job
+  wf-develop-deploy-job: 
+    needs: wf-develop-build-job
     permissions: 
       pages: write
       id-token: write
@@ -32,5 +36,5 @@ jobs:
       - name: Deploy build artifacts on GitHub Pages
         uses: actions/deploy-pages@v4
         with: 
-          artifact_name: "develop-artifact"  
-          token: ${{ secrets.GITHUB_TOKEN }}  
+          artifact_name: "develop-artifact"
+          token: ${{ secrets.GITHUB_TOKEN }}
