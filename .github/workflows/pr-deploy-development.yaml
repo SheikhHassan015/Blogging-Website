@@ -1,12 +1,11 @@
-name: wf-develop-deploy
-
+name: wf-deploy-development
 on:
   push:
     branches:
       - develop
-
+      
 jobs:
-  wf-develop-build-job:
+  wf-deploy-development-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,8 +21,8 @@ jobs:
           path: "./dist"
           name: "develop-artifact"
 
-  wf-develop-deploy-job: 
-    needs: wf-develop-build-job
+  wf-deploy-development-jobs: 
+    needs: wf-deploy-development-job
     permissions: 
       pages: write
       id-token: write
