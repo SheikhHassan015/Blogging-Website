@@ -1,8 +1,10 @@
 name: wf-develop-deploy
+
 on:
   push:
     branches:
       - develop
+
 jobs:
   wf-develop-build-job:
     runs-on: ubuntu-latest
@@ -31,5 +33,5 @@ jobs:
       - name: Deploy build artifacts on GitHub Pages
         uses: actions/deploy-pages@v4
         with: 
-          artifact_name: "develop-artifact"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact_name: "develop-artifact"  
+          token: ${{ secrets.GITHUB_TOKEN }}  
