@@ -7,26 +7,29 @@ jobs:
   wf-develop-build-job:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Buid website
-        run:
-          npx parcel build "./src/index.html" --dist-dir "./dist" --public -url "./dir"
+
+      - name: Build website
+        run: |
+          npx parcel build "./src/index.html" --dist-dir "./dist" --public-url "./"
+
       - name: Upload Artifacts 
-        uses: actions/upload-pages-artifcat@v3
+        uses: actions/upload-artifact@v3
         with: 
           path: "./dist"
-          name: "develop -artifact"
+          name: "develop-artifact"
+
   wf-develop-deploy-job: 
-    needs: wf-develop-bulid-job
+    needs: wf-develop-build-job
     permissions: 
       pages: write
       id-token: write
     environment: "development-env"
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy buidl atrifacts on GH pages
+      - name: Deploy build artifacts on GitHub Pages
         uses: actions/deploy-pages@v4
         with: 
-          artifact_name: "develop-artifacts"
-          token: ${{github.token}}
+          artifact_name: "develop-artifact"
+          token: ${{ secrets.GITHUB_TOKEN }}
