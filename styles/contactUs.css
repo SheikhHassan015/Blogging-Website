@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+.header {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+    width: 400px; /* Fixed width for the form card */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+label {
+    margin-top: 10px; /* Space between labels and inputs */
+}
+
+input, textarea {
+    padding: 10px; /* Padding for input fields */
+    margin-top: 5px; /* Space between inputs and labels */
+}
+
+button {
+    margin-top: 15px; /* Space above the button */
+    padding: 10px; /* Padding for button */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+}
